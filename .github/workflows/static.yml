@@ -1,0 +1,43 @@
+# Flujo de trabajo simple para implementar contenido estático en páginas de GitHub
+nombre: Implementar contenido estático en páginas
+
+es:
+  # Se ejecuta en envíos dirigidos a la rama predeterminada
+  empujar:
+    sucursales: ["Reproductor de Alkor"]
+
+  # Le permite ejecutar este flujo de trabajo manualmente desde la pestaña Acciones
+  envío_flujo de trabajo:
+
+# Establece permisos de GITHUB_TOKEN para permitir la implementación en páginas de GitHub
+permisos:
+  contenido: mirada lasciva
+  paginas: Escribir
+  ficha de identificación: Escribir
+
+# Permitir solo una implementación simultánea, omitiendo ejecuciones en cola entre la ejecución en curso y la última en cola.
+# Sin embargo, NO cancele las ejecuciones en curso, ya que queremos permitir que se completen estas implementaciones de producción...
+concurrencia:
+  grupo: "paginas"
+  cancelación en curso: FALSO
+
+trabajos:
+  # Trabajo de implementación único ya que recién estamos implementando
+  desplegar:
+    ambiente:
+      Nombre: páginas-github
+      URL: ${{ pasos.implementación.salidas.page_url }}
+    se ejecuta en: ubuntu-último
+    pasos:
+      - Nombre: Verificar
+        Usos: acciones/pagar@v3
+      - Nombre: Páginas de configuración
+        Usos: acciones/configurar-páginas@v3
+      - Nombre: Subir artefacto
+        Usos: acciones/cargar-páginas-artifact@v2
+        con:
+          # Subir el repositorio completo
+          camino: '.'
+      - name: Implementar en páginas de GitHub
+        id: despliegue
+        uses: actions/deploy-pages@v2
