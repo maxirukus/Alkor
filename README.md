@@ -52,9 +52,7 @@ const API_URL = 'https://api.streamafrica.net/metadata/index?z='+URL_STREAMING
 * CentovaCast Now Playing API (Pro)
 
 
-# JCPlayer Pro
-#### ScreenShot
-[![](https://i.ibb.co/1sy1TPj/Screenshot-2023-09-03-23-44-30.pnghttp://)](https://i.ibb.co/1sy1TPj/Screenshot-2023-09-03-23-44-30.pnghttp://)
+
 
 ## Features
 - Supports Itunes, Spotify, Azuracast, MediaCP, Deezer.
@@ -63,21 +61,14 @@ const API_URL = 'https://api.streamafrica.net/metadata/index?z='+URL_STREAMING
 - Single Or Multi Radio Stations.
 - StreamAfrica Premium API.
 
-#### Price
-100$ Per Year.
 
-#### Client Demos.
-- [Smooth Sailing Radio Demo](http://player.smoothsailingradio.com/ "Smooth Sailing Radio Demo")
-- [Box Radio Player](https://player.boxradio.net/)
 
 #### Purchase URL.
 [Buy JCPlayer Pro](https://spp.joeycast.com/store/jcplayer/jcplayer-pro/4)
 
 
 
-## Feedback
 
-If you have any feedback, please reach out to me at bankuboy@pm.me
 
 
 ## License

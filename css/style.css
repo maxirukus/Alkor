@@ -18,7 +18,7 @@ body {
     min-width: 100%;
     min-height: 100%;
     position: fixed;
-    background: url('../img/logo-megadisco.jpg') no-repeat;
+    background: url('../img/fondo.jpg') no-repeat;
     background-position: center;
     background-size: cover;
     transition: background-image 1s;
