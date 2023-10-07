@@ -3,7 +3,7 @@
 const RADIO_NAME = 'MegaDisco Radio';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
-var API_SERVICE = 'spotify';
+var API_SERVICE = 'deezer';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'http://stream.laut.fm/megadiscoradio';
