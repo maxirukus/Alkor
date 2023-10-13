@@ -3,7 +3,7 @@
 const RADIO_NAME = 'MegaDisco Radio';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
-var API_SERVICE = 'spotify';
+var API_SERVICE = 'deezer';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'http://stream.laut.fm/megadiscoradio';
@@ -13,25 +13,6 @@ const API_URL = 'https://api.streamafrica.net/metadata/index.php?z='+URL_STREAMI
 
 // Visit https://api.vagalume.com.br/docs/ to get your API key
 const API_KEY = "18fe07917957c289983464588aabddfb";
-
-window.onload = function () {
-    var page = new Page;
-    page.changeTitlePage();
-    page.setVolume();
-
-    var player = new Player();
-    player.play();
-
-    getStreamingData();
-    // Interval to get streaming data in miliseconds
-    setInterval(function () {
-        getStreamingData();
-    }, 10000);
-
-    var coverArt = document.getElementsByClassName('cover-album')[0];
-
-    coverArt.style.height = coverArt.offsetWidth + 'px';
-}
 
 // DOM control
 function Page() {
@@ -58,7 +39,7 @@ function Page() {
             setTimeout(function () {
                 currentSong.className = 'text-uppercase';
                 currentArtist.className = 'text-capitalize';
-            }, 2000);
+            }, 1000);
         }
     }
 
