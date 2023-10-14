@@ -102,7 +102,7 @@ function Page() {
                 $historicDiv[j].classList.remove('animated');
                 $historicDiv[j].classList.remove('slideInRight');
             }
-        }, 2000);
+        }, 5000);
     }
 
     this.refreshCover = function (song = '', artist) {
