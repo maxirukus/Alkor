@@ -3,7 +3,7 @@
 const RADIO_NAME = 'MegaDisco';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
-var API_SERVICE = 'deezer';
+var API_SERVICE = 'itunes';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'http://stream.laut.fm/megadiscoradio';
@@ -26,7 +26,7 @@ window.onload = function () {
     // Interval to get streaming data in miliseconds
     setInterval(function () {
         getStreamingData();
-    }, 10000);
+    }, 40000);
 
     var coverArt = document.getElementsByClassName('cover-album')[0];
 
