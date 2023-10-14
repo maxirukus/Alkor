@@ -61,7 +61,7 @@ body {
 }
 
 .cover-album {
-    max-width: 80%;
+    max-width: 60%;
     margin: auto;
     background: url('../img/logo-megadisco.jpg') no-repeat;
     background-size: cover;
