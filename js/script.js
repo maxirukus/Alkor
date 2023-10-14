@@ -1,6 +1,6 @@
 
 
-const RADIO_NAME = 'MegaDisco Radio';
+const RADIO_NAME = 'MegaDisco';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'deezer';
@@ -13,6 +13,25 @@ const API_URL = 'https://api.streamafrica.net/metadata/index.php?z='+URL_STREAMI
 
 // Visit https://api.vagalume.com.br/docs/ to get your API key
 const API_KEY = "18fe07917957c289983464588aabddfb";
+
+window.onload = function () {
+    var page = new Page;
+    page.changeTitlePage();
+    page.setVolume();
+
+    var player = new Player();
+    player.play();
+
+    getStreamingData();
+    // Interval to get streaming data in miliseconds
+    setInterval(function () {
+        getStreamingData();
+    }, 10000);
+
+    var coverArt = document.getElementsByClassName('cover-album')[0];
+
+    coverArt.style.height = coverArt.offsetWidth + 'px';
+}
 
 // DOM control
 function Page() {
@@ -39,7 +58,7 @@ function Page() {
             setTimeout(function () {
                 currentSong.className = 'text-uppercase';
                 currentArtist.className = 'text-capitalize';
-            }, 1000);
+            }, 2000);
         }
     }
 
