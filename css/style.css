@@ -3,8 +3,7 @@
 
 html, body {
     height: 100%;
-    font-family: Helvetica,Arial,italic;
-}
+    font-family: "Lucida Console", "Courier New", monospace;
 
 body {
     display: flex;
