@@ -97,7 +97,7 @@ body {
     font-size:30px;
     text-transform: uppercase;
     font-weight: 900;
-    -webkit-text-stroke: 0.8px black;
+    -webkit-text-stroke: 0.5px black;
     text-shadow: 0 0 10px black;
     font-style: italic;
    
@@ -302,7 +302,7 @@ input[type=range]::-ms-thumb {
 /* COLOR TEXTO INFO ARTISTA */
 .historic .music-info {
     color: white;
-    -webkit-text-stroke: 0.9px black;
+    -webkit-text-stroke: 0.5px black;
     font-size: 20px;
     font-weight: 600;
     text-shadow: 0 0 10px black;
@@ -315,13 +315,13 @@ input[type=range]::-ms-thumb {
 .historic .music-info .song {
     width: 100%;
     font-weight: 800;
-    font-size: 22px;
+    font-size: 20px;
     text-transform: uppercase;
     margin-bottom: -5px;
     color: white;
     text-shadow: 0 0 10px black;
     font-weight: 800;
-    -webkit-text-stroke: 0.9px black;
+    -webkit-text-stroke: 0.5px black;
     font-style: italic;
    
 
