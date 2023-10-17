@@ -26,7 +26,7 @@ window.onload = function () {
     // Interval to get streaming data in miliseconds
     setInterval(function () {
         getStreamingData();
-    }, 20000);
+    }, 10000);
 
     var coverArt = document.getElementsByClassName('cover-album')[0];
 
@@ -102,7 +102,7 @@ function Page() {
                 $historicDiv[j].classList.remove('animated');
                 $historicDiv[j].classList.remove('slideInRight');
             }
-        }, 5000);
+        }, 2000);
     }
 
     this.refreshCover = function (song = '', artist) {
