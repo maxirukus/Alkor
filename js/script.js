@@ -1,12 +1,12 @@
 
 
-const RADIO_NAME = 'MegaDisco';
+const RADIO_NAME = 'Only Romantic';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'itunes';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
-const URL_STREAMING = 'http://stream.laut.fm/megadiscoradio';
+const URL_STREAMING = 'http://stream.laut.fm/only-romantic-radio';
 
 //API URL / if you use MEDIA CP, CHANGE THIS TO : https://api.streamafrica.net/metadata/mediacp.php?url='+MEDIACP_JSON_URL
 const API_URL = 'https://api.streamafrica.net/metadata/index.php?z='+URL_STREAMING
