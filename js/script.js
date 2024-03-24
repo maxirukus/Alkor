@@ -2,7 +2,7 @@
 
 const RADIO_NAME = 'Only Romantic';
 
-// SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
+// SELECT ARTWORK PROVIDER, ITUNES, DEEZER &amp; SPOTIFY  eg : spotify 
 var API_SERVICE = 'spotify ';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
@@ -10,220 +10,92 @@ const URL_STREAMING = 'http://stream.laut.fm/only-romantic-radio';
 
 
 
-// Visit https://api.vagalume.com.br/docs/ to get your API key
-const API_KEY = "18fe07917957c289983464588aabddfb";
-
-window.onload = function () {
-    var page = new Page;
-    page.changeTitlePage();
-    page.setVolume();
-
-    var player = new Player();
-    player.play();
-
-    getStreamingData();
-    // Interval to get streaming data in miliseconds
-    setInterval(function () {
-        getStreamingData();
-    }, 10000);
-
-    var coverArt = document.getElementsByClassName('cover-album')[0];
-
-    coverArt.style.height = coverArt.offsetWidth + 'px';
-}
-
-// DOM control
-function Page() {
-    this.changeTitlePage = function (title = RADIO_NAME) {
-        document.title = title;
-    };
-
-    this.refreshCurrentSong = function (song, artist) {
-        var currentSong = document.getElementById('currentSong');
-        var currentArtist = document.getElementById('currentArtist');
-
-        if (song !== currentSong.innerHTML) {
-            // Animate transition
-            currentSong.className = 'animated flipInY text-uppercase';
-            currentSong.innerHTML = song;
-
-            currentArtist.className = 'animated flipInY text-capitalize';
-            currentArtist.innerHTML = artist;
-
-            // Refresh modal title
-            document.getElementById('lyricsSong').innerHTML = song + ' - ' + artist;
-
-            // Remove animation classes
-            setTimeout(function () {
-                currentSong.className = 'text-uppercase';
-                currentArtist.className = 'text-capitalize';
-            }, 2000);
+function $_GET(param) {
+    var vars = {};
+    window.location.href.replace( location.hash, '' ).replace(
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function( m, key, value ) { // callback
+            vars[key] = value !== undefined ? value : '';
         }
+    );
+
+    if ( param ) {
+        return vars[param] ? vars[param] : null;
     }
-
-    this.refreshHistoric = function (info, n) {
-        var $historicDiv = document.querySelectorAll('#historicSong article');
-        var $songName = document.querySelectorAll('#historicSong article .music-info .song');
-        var $artistName = document.querySelectorAll('#historicSong article .music-info .artist');
-
-        // Default cover art
-        var urlCoverArt = 'img/cover.png';
-
-        // Get cover art for song history
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                var data = JSON.parse(this.responseText);
-                var artworking = data.results;
-                var gotit = artworking.artwork;
-
-                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + gotit + ')';
-            }
-            // Formating characters to UTF-8
-            var music = info.song.replace(/&apos;/g, '\'');
-            var songHist = music.replace(/&amp;/g, '&');
-
-            var artist = info.artist.replace(/&apos;/g, '\'');
-            var artistHist = artist.replace(/&amp;/g, '&');
-
-            $songName[n].innerHTML = songHist;
-            $artistName[n].innerHTML = artistHist;
-
-            // Add class for animation
-            $historicDiv[n].classList.add('animated');
-            $historicDiv[n].classList.add('slideInRight');
-        }
-       function getItunesUrl(artist,song) {
+    return vars;
+}
+function getItunesUrl(artist,song) {
     return "https://itunes.apple.com/search?media=music&term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
 }
 
-        setTimeout(function () {
-            for (var j = 0; j < 2; j++) {
-                $historicDiv[j].classList.remove('animated');
-                $historicDiv[j].classList.remove('slideInRight');
-            }
-        }, 2000);
-    }
+function getImageUrl(url, width, height) {
+    let imageUrl = url.substring(0, url.lastIndexOf('/')) + '/' + width + "x" + height + ".jpg";
+    return imageUrl.replace(/^(http):\/\//gi, "https://")
+}
 
-    this.refreshCover = function (song = '', artist) {
-        // Default cover art
-        var urlCoverArt = 'img/cover.png';
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            var coverArt = document.getElementById('currentCoverArt');
-            var coverBackground = document.getElementById('bgCover');
-
-            // Get cover art URL on iTunes API
-            if (this.readyState === 4 && this.status === 200) {
-                var data = JSON.parse(this.responseText);
-                var artworkUrl100 = data.results;
-                var urlCoverArt = artworkUrl100.artwork;
-
-                coverArt.style.backgroundImage = 'url(' + urlCoverArt + ')';
-                coverArt.className = 'animated bounceInLeft';
-
-                coverBackground.style.backgroundImage = 'url(' + urlCoverArt + ')';
-
-                setTimeout(function () {
-                    coverArt.className = '';
-                }, 2000);
-
-                if ('mediaSession' in navigator) {
-                    navigator.mediaSession.metadata = new MediaMetadata({
-                        title: song,
-                        artist: artist,
-                        artwork: [{
-                                src: urlCoverArt,
-                                sizes: '96x96',
-                                type: 'image/png'
-                            },
-                            {
-                                src: urlCoverArt,
-                                sizes: '128x128',
-                                type: 'image/png'
-                            },
-                            {
-                                src: urlCoverArt,
-                                sizes: '192x192',
-                                type: 'image/png'
-                            },
-                            {
-                                src: urlCoverArt,
-                                sizes: '256x256',
-                                type: 'image/png'
-                            },
-                            {
-                                src: urlCoverArt,
-                                sizes: '384x384',
-                                type: 'image/png'
-                            },
-                            {
-                                src: urlCoverArt,
-                                sizes: '512x512',
-                                type: 'image/png'
-                            }
-                        ]
-                    });
-                }
-            }
-        }
-        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + artist + ' ' + song + '&service=' + API_SERVICE.toLowerCase());
-        xhttp.send();
-    }
-
-    this.changeVolumeIndicator = function (volume) {
-        document.getElementById('volIndicator').innerHTML = volume;
-
-        if (typeof (Storage) !== 'undefined') {
-            localStorage.setItem('volume', volume);
-        }
-    }
-
-    this.setVolume = function () {
-        if (typeof (Storage) !== 'undefined') {
-            var volumeLocalStorage = (!localStorage.getItem('volume')) ? 80 : localStorage.getItem('volume');
-            document.getElementById('volume').value = volumeLocalStorage;
-            document.getElementById('volIndicator').innerHTML = volumeLocalStorage;
-        }
-    }
-
-    this.refreshLyric = function (currentSong, currentArtist) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                var data = JSON.parse(this.responseText);
-
-                var openLyric = document.getElementsByClassName('lyrics')[0];
-
-                if (data.type === 'exact' || data.type === 'aprox') {
-                    var lyric = data.mus[0].text;
-
-                    document.getElementById('lyric').innerHTML = lyric.replace(/\n/g, '<br />');
-                    openLyric.style.opacity = "1";
-                    openLyric.setAttribute('data-toggle', 'modal');
-                } else {
-                    openLyric.style.opacity = "0.3";
-                    openLyric.removeAttribute('data-toggle');
-
-                    var modalLyric = document.getElementById('modalLyrics');
-                    modalLyric.style.display = "none";
-                    modalLyric.setAttribute('aria-hidden', 'true');
-                    (document.getElementsByClassName('modal-backdrop')[0]) ? document.getElementsByClassName('modal-backdrop')[0].remove(): '';
-                }
+function getLiveStatus(json_song) {
+    if (json_song['live']) {
+        if (live != json_song['live'].toString()) {
+            if (json_song['live'] == true) {
+                $('#live p i').removeClass('notLive').addClass('blink-2');
+                $('#live p span').html('On Air');
             } else {
-                document.getElementsByClassName('lyrics')[0].style.opacity = "0.3";
-                document.getElementsByClassName('lyrics')[0].removeAttribute('data-toggle');
+                $('#live p i').removeClass('blink-2').addClass('notLive');
+                $('#live p span').html('Off Air');
+
             }
         }
-        xhttp.open('GET', 'https://api.vagalume.com.br/search.php?apikey=' + API_KEY + '&art=' + currentArtist + '&mus=' + currentSong.toLowerCase(), true);
-        xhttp.send()
+    } else {
+        if (live != false) {
+            $('#live p i').removeClass('blink-2').addClass('notLive');
+            $('#live p span').html('Off Air');
+        }
     }
 }
 
+function coverLoop(song_url, station_img) {
+    setTimeout(function () {
+
+        getCover(song_url, station_img);
+        coverLoop(song_url, station_img);
+    }, 2000)
+}
+
+function getCover(song_url, station_img) {
+    $.getJSON(song_url, function (current) {
+        getLiveStatus(current);
+        if (song_str != (current.title + " " + current.artist.name))  {
+            song_str = current.title + " " + current.artist.name
+            $.getJSON(getItunesUrl(current.title, current.artist.name), function (song) {
+                let img_url;
+                if (song.resultCount === 0) {
+                 ;
+                    if (song.resultCount === 0) {
+                        img_url = station_img;
+                    } else {
+                        img_url = getImageUrl(song.results[0].artworkUrl100, width, height);
+                    }
+                } else {
+                    img_url = getImageUrl(song.results[0].artworkUrl100, width, height);
+                }
+                $("#image").attr("src", img_url).attr("alt", current.title + ", " + current.artist.name).attr("width", width).attr("height", height)
+                $("#image2").attr("src", img_url).attr("alt", current.title + ", " + current.artist.name).attr("width", width).attr("height", height)
+                
+            })
+        }
+    })
+}
+
+
+
+
+
+    
+// Player control
+
+const URL_STREAMING = 'https://stream.laut.fm/only-romantic-radio';
 var audio = new Audio(URL_STREAMING);
 
-// Player control
 function Player() {
     this.play = function () {
         audio.play();
@@ -334,44 +206,38 @@ function mute() {
 function getStreamingData() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-
         if (this.readyState === 4 && this.status === 200) {
-
-            if(this.response.length === 0) {
-                console.log('%cdebug', 'font-size: 22px')
+            if (this.response.length === 0) {
+                console.log('%cdebug', 'font-size: 22px');
             }
 
             var data = JSON.parse(this.responseText);
+            console.log('Received data:', data); // Add this line for debugging
 
             var page = new Page();
 
             // Formating characters to UTF-8
-            let song = data.currentSong.replace(/&apos;/g, '\'');
-            currentSong = song.replace(/&amp;/g, '&');
-
-            let artist = data.currentArtist.replace(/&apos;/g, '\'');
-            currentArtist = artist.replace(/&amp;/g, '&');
+            let song = data.song ? data.song.replace(/&apos;/g, '\'') : '';
+            let artist = data.artist ? data.artist.replace(/&apos;/g, '\'') : '';
 
             // Change the title
-            document.title = currentSong + ' - ' + currentArtist + ' | ' + RADIO_NAME;
+            document.title = song + ' - ' + artist + ' | ' + RADIO_NAME;
 
             if (document.getElementById('currentSong').innerHTML !== song) {
-                page.refreshCover(currentSong, currentArtist);
-                page.refreshCurrentSong(currentSong, currentArtist);
-                page.refreshLyric(currentSong, currentArtist);
+                page.refreshCover(song, artist);
+                page.refreshCurrentSong(song, artist);
+                page.refreshLyric(song, artist);
 
                 for (var i = 0; i < 2; i++) {
-                    page.refreshHistoric(data.songHistory[i], i);
+                    page.refreshHistoric(data.history[i], i);
                 }
             }
-        } 
+        }
     };
 
     var d = new Date();
 
-    // Requisition with timestamp to prevent cache on mobile devices
-    xhttp.open('GET', API_URL);
-    xhttp.send();
+ 
 }
 
 // Player control by keys
@@ -519,13 +385,13 @@ document.addEventListener('keydown', function (k) {
         // 9
         case 57:
             audio.volume = .9;
-            slideVolume.value = 90;
+            slideVolume.Value = 90;
             page.changeVolumeIndicator(90);
             break;
         // 9 numeric key
         case 105:
             audio.volume = .9;
-            slideVolume.value = 90;
+            slideVolume.Value = 90;
             page.changeVolumeIndicator(90);
             break;
     }
@@ -537,4 +403,7 @@ function intToDecimal(vol) {
 
 function decimalToInt(vol) {
     return vol * 100;
+}
+
+
 }
