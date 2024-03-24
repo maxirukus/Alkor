@@ -92,7 +92,7 @@ function getCover(song_url, station_img) {
 
     
 // Player control
-
+const URL_STREAMING = 'http://stream.laut.fm/only-romantic-radio';
 
 var audio = new Audio(URL_STREAMING);
 
