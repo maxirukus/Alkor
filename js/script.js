@@ -10,11 +10,11 @@ const URL_STREAMING = 'http://stream.laut.fm/only-romantic-radio';
 
 
 
-function $_GET(param) {
+function $_get(param) {
     var vars = {};
     window.location.href.replace( location.hash, '' ).replace(
         /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-        function( m, key, value ) { // callback
+        function( m, key, Value ) { // callback
             vars[key] = value !== undefined ? value : '';
         }
     );
@@ -25,7 +25,7 @@ function $_GET(param) {
     return vars;
 }
 function getItunesUrl(artist,song) {
-    return "https://itunes.apple.com/search?media=music&term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
+    return "https://itunes.apple.com/search?media=music&amp;term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
 }
 
 function getImageUrl(url, width, height) {
@@ -93,14 +93,14 @@ function getCover(song_url, station_img) {
     
 // Player control
 
-const URL_STREAMING = 'https://stream.laut.fm/only-romantic-radio';
+
 var audio = new Audio(URL_STREAMING);
 
 function Player() {
     this.play = function () {
         audio.play();
 
-        var defaultVolume = document.getElementById('volume').value;
+        var defaultVolume = document.getElementById('volume').Value;
 
         if (typeof (Storage) !== 'undefined') {
             if (localStorage.getItem('volume') !== null) {
@@ -123,7 +123,7 @@ function Player() {
 audio.onplay = function () {
     var botao = document.getElementById('playerButton');
     var bplay = document.getElementById('buttonPlay');
-    if (botao.className === 'fa fa-play') {
+    if (botao.classname === 'fa fa-play') {
         botao.className = 'fa fa-pause';
         bplay.firstChild.data = 'PAUSE';
     }
