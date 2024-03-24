@@ -93,8 +93,9 @@ function Page() {
             $historicDiv[n].classList.add('animated');
             $historicDiv[n].classList.add('slideInRight');
         }
-        xhttp.open('GET', 'https://itunes.apple.com/search?media=music&term=' + info.artist + ' ' + info.song +  "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
-        xhttp.send();
+       function getItunesUrl(artist,song) {
+    return "https://itunes.apple.com/search?media=music&term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
+}
 
         setTimeout(function () {
             for (var j = 0; j < 2; j++) {
