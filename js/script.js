@@ -8,6 +8,7 @@ var API_SERVICE = 'spotify ';
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'http://stream.laut.fm/only-romantic-radio';
 
+const API_URL = 'https://itunes.apple.com/search?media=music&amp;term='
 
 
 function $_get(param) {
