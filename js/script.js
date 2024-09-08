@@ -3,7 +3,7 @@
 const RADIO_NAME = 'Only Romantic';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER &amp; SPOTIFY  eg : spotify 
-var API_SERVICE = 'spotify ';
+var API_SERVICE = 'deezer';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'https://stream.laut.fm/only-romantic-radio';
