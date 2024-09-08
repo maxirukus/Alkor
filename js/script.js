@@ -8,7 +8,7 @@ var API_SERVICE = 'deezer';
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'https://stream.laut.fm/only-romantic-radio';
 
-/NOW PLAYING API.
+//NOW PLAYING API.
 const API_URL = 'https://api-v2.streamafrica.net/icyv2?url=' + URL_STREAMING;
 
 
