@@ -11,6 +11,9 @@ const URL_STREAMING = 'https://stream.laut.fm/only-romantic-radio';
 //NOW PLAYING API.
 const API_URL = 'https://api-v2.streamafrica.net/icyv2?url=' + URL_STREAMING;
 
+// Visit https://api.vagalume.com.br/docs/ to get your API key
+const API_KEY = "18fe07917957c289983464588aabddfb";
+
 
 window.onload = function () {
     var page = new Page;
@@ -24,7 +27,7 @@ window.onload = function () {
     // Interval to get streaming data in miliseconds
     setInterval(function () {
         getStreamingData();
-    }, 5000);
+    }, 10000);
 
     var coverArt = document.getElementsByClassName('cover-album')[0];
 
