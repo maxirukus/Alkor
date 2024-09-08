@@ -6,7 +6,7 @@ const RADIO_NAME = 'Only Romantic';
 var API_SERVICE = 'spotify ';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
-const URL_STREAMING = 'http://stream.laut.fm/only-romantic-radio';
+const URL_STREAMING = 'https://stream.laut.fm/only-romantic-radio';
 
 const API_URL = 'https://api-v2.streamafrica.net/icyv2?url=' + URL_STREAMING;
 
