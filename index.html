@@ -1,21 +1,7 @@
-<!--
-  ~ Copyright © 2018 Valentin Sickert
-  ~ This work is free. You can redistribute it and/or modify it under the
-  ~ terms of the Do What The Fuck You Want To Public License, Version 2,
-  ~ as published by Sam Hocevar. See the LICENSE file or http://www.wtfpl.net/
-  ~ for more details.
-  -->
-
-<!--
-  ~ Created by: Valentin Sickert
-  ~ Date: 29.10.18 23:37
-  ~ Project: cover-display
-  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Valentin Sickert">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Cover Display</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
@@ -34,27 +20,6 @@
 
 </div>
 
-<div class="modal fade right" id="donationModal" tabindex="-1" role="dialog" aria-labelledby="donationModalLabel" aria-hidden="true" data-backdrop='false'>
-    <div class="modal-dialog modal-sm modal-side modal-top-right" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-white elegant-color">
-                <h5 class="modal-title" id="donationModalLabel">You like this work?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body stylish-color text-white text-justify">
-                If you like my work I would appreciate a small donation.
-                I do this work in my free time.
-            </div>
-            <div class="modal-footer elegant-color py-1">
-                <a class="btn btn-dark-green mx-auto" href="https://paypal.me/lapotor" target="_blank"><i class="fas fa-hand-holding-usd"
-                                                                                                          style="font-size: 1.5em"></i>&nbsp;Donate</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="container">
     <div class="row">
@@ -64,7 +29,7 @@
                 Cover Display
             </h3>
             <h3 class="mb-2">
-                <small class="text-muted"><em>by <a href="https://github.com/lapotor">Lapotor</a></em></small>
+                <small class="text-muted"><em>by <a href="https://alkor-player.pages.dev/">Maxirukus</a></em></small>
             </h3>
             <p class="text-justify mb-5">The artworks get loaded from <b>itunes.apple.com</b> directly in the clients browser. I have no rights on the those
                 artworks.</p>
@@ -162,7 +127,7 @@
         if (!$("label[for='url']").hasClass("active")) {
             $("label[for='url']").addClass("active")
         }
-        let url = "https://alkor-player.pages.dev//cover.html?station=" + $("#station").val() + "&width=" + $("#width").val();
+        let url = "http://127.0.0.1:5500/cover-display-master/cover.html?station=" + $("#station").val() + "&width=" + $("#width").val();
         if (!($("#height").val() == null || $("#station").val() == 0 || $("#height").val() == "")) {
             url = url + "&height=" + $("#height").val()
         }
