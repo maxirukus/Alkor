@@ -1,10 +1,3 @@
-/*
- * Copyright © 2018 Valentin Sickert
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See the LICENSE file or http://www.wtfpl.net/
- * for more details.
- */
 function $_GET(param) {
     var vars = {};
     window.location.href.replace( location.hash, '' ).replace(
@@ -20,13 +13,17 @@ function $_GET(param) {
     return vars;
 }
 
-function getItunesUrl(song, artist, german) {
-    let url = "https://itunes.apple.com/search?term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
-    if (german) {
-        url = url + "&country=de"
-    }
-    return url;
+function getItunesUrl(song, artist) {
+    const baseUrl = "https://itunes.apple.com/search";
+    const queryParams = new URLSearchParams({
+        term: `${artist} ${song}`,
+        entity: "musicTrack,album,musicArtist",
+        limit: 1,
+    });
+
+    return `${baseUrl}?${queryParams.toString()}`;
 }
+
 
 function getImageUrl(url, width, height) {
     let imageUrl = url.substring(0, url.lastIndexOf('/')) + '/' + width + "x" + height + ".jpg";
@@ -58,7 +55,7 @@ function coverLoop(song_url, station_img) {
 
         getCover(song_url, station_img);
         coverLoop(song_url, station_img);
-    }, 2000)
+    }, 4000)
 }
 
 function getCover(song_url, station_img) {
