@@ -13,13 +13,12 @@ function $_GET(param) {
     return vars;
 }
 
-function getItunesUrl(song, artist) {
+function getItunesUrl(artist, song) {
     const baseUrl = "https://itunes.apple.com/search";
-    const queryParams = new URLSearchParams({
-        term: `${artist} ${song}`,
-        entity: "musicTrack,album,musicArtist",
-        limit: 1,
-    });
+    const query = `term=${encodeURIComponent(artist)}+${encodeURIComponent(song)}`;
+    const params = "entity=musicTrack,album&limit=5"; // Reducir a 5 resultados para optimizar
+    return `${baseUrl}?${query}&${params}`;
+}
 
     return `${baseUrl}?${queryParams.toString()}`;
 }
