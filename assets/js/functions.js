@@ -37,7 +37,7 @@ async function getCover(song_url, station_img) {
 function getItunesUrl(artist, song) {
     const baseUrl = "https://itunes.apple.com/search";
     const query = `term=${encodeURIComponent(artist)}+${encodeURIComponent(song)}`;
-    const params = "entity=musicTrack,album&limit=5"; // Reducir a 5 resultados para optimizar
+    const params = "entity=musicTrack&limit=5"; 
     return `${baseUrl}?${query}&${params}`;
 }
 
